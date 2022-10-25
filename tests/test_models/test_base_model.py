@@ -32,7 +32,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(bm.id)
 
     def test_created_at_attribute(self):
-        self.assertEqual(BaseModel().created_at, datetime.now())
+        self.assertAlmostEqual(BaseModel().created_at, datetime.now())
 
     def test_sting_representation(self):
         bm = BaseModel()

@@ -8,7 +8,6 @@ This module define a TestBaseModel Class
 
 import unittest
 import os
-from datetime import datetime
 from models.base_model import BaseModel
 
 

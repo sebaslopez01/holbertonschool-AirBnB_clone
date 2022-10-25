@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
             print('** value missing **')
             return False
 
-        model_name, model_id, attr_name, value = args_lst
+        model_name, model_id, attr_name, value, *_other = args_lst
         if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False

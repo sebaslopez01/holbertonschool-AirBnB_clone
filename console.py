@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return False
         if model_name != 'BaseModel':
-            print('class doesn\'t exist')
+            print('** class doesn\'t exist **')
             return False
 
         bm = BaseModel()
@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
 
         model_name, model_id = args_lst
         if model_name != 'BaseModel':
-            print('class doesn\'t exist')
+            print('** class doesn\'t exist **')
             return False
 
         bm = models.storage.all().get(f'{model_name}.{model_id}')
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
 
         model_name, model_id = args_lst
         if model_name != 'BaseModel':
-            print('class doesn\'t exist')
+            print('** class doesn\'t exist **')
             return False
 
         bm = models.storage.all().get(f'{model_name}.{model_id}')
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
 
         if model_name:
             if model_name != 'BaseModel':
-                print('class doesn\'t exist')
+                print('** class doesn\'t exist **')
                 return False
             print([str(value) for key, value in storage_data.items()
                    if key.split('.')[0] == model_name])
@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
 
         model_name, model_id, attr_name, value = args_lst
         if model_name != 'BaseModel':
-            print('class doesn\'t exist')
+            print('** class doesn\'t exist **')
             return False
 
         bm = models.storage.all().get(f'{model_name}.{model_id}')

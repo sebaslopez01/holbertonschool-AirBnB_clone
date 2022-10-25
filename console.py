@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return False
 
-        model_name, model_id = args_lst
+        model_name, model_id, *_other = args_lst
         if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False
@@ -76,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return False
 
-        model_name, model_id = args_lst
+        model_name, model_id, *_other = args_lst
         if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False

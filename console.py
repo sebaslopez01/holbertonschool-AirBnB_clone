@@ -8,6 +8,7 @@ This module defines a HBNBCommand Class
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
@@ -30,11 +31,11 @@ class HBNBCommand(cmd.Cmd):
         if not model_name:
             print('** class name missing **')
             return False
-        if model_name != 'BaseModel':
+        if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False
 
-        bm = BaseModel()
+        bm = BaseModel() if model_name == 'BaseModel' else User()
         bm.save()
 
         print(bm.id)
@@ -52,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id = args_lst
-        if model_name != 'BaseModel':
+        if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False
 
@@ -76,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id = args_lst
-        if model_name != 'BaseModel':
+        if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False
 
@@ -94,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
         storage_data = models.storage.all()
 
         if model_name:
-            if model_name != 'BaseModel':
+            if model_name != 'BaseModel' or model_name != 'User':
                 print('** class doesn\'t exist **')
                 return False
             print([str(value) for key, value in storage_data.items()
@@ -120,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, attr_name, value = args_lst
-        if model_name != 'BaseModel':
+        if model_name != 'BaseModel' or model_name != 'User':
             print('** class doesn\'t exist **')
             return False
 

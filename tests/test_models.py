@@ -23,6 +23,7 @@ class TestFileStorage(unittest.TestCase):
         bm = BaseModel()
         bm.save()
         self.assertTrue(os.path.exists('file.json'))
+        os.remove('file.json')
 
 
 class TestBaseModel(unittest.TestCase):

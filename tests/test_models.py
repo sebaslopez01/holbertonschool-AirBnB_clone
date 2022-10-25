@@ -19,6 +19,10 @@ from models.state import State
 
 
 class TestFileStorage(unittest.TestCase):
+    pass
+
+
+class TestBaseModel(unittest.TestCase):
     def test_save_method(self):
         bm = BaseModel()
         bm.save()
@@ -32,10 +36,6 @@ class TestFileStorage(unittest.TestCase):
     def test_sting_representation(self):
         bm = BaseModel()
         self.assertEqual(str(bm), f'[BaseModel] ({bm.id} {bm.__dict__})')
-
-
-class TestBaseModel(unittest.TestCase):
-    pass
 
 
 class TestUser(unittest.TestCase):

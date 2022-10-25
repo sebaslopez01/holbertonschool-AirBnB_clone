@@ -9,11 +9,18 @@ This module defines a HBNBCommand Class
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
+    valid_models = ['BaseModel', 'User', 'State',
+                    'City', 'Amenity', 'Place', 'Review']
 
     def do_quit(self, _arg):
         """Quit command to exit the program
@@ -31,14 +38,28 @@ class HBNBCommand(cmd.Cmd):
         if not model_name:
             print('** class name missing **')
             return False
-        if model_name != 'BaseModel' and model_name != 'User':
+        if not model_name in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
-        bm = BaseModel() if model_name == 'BaseModel' else User()
-        bm.save()
+        if model_name == 'BaseModel':
+            model = BaseModel()
+        elif model_name == 'User':
+            model = User()
+        elif model_name == 'State':
+            model = State()
+        elif model_name == 'City':
+            model = City()
+        elif model_name == 'Amenity':
+            model = Amenity()
+        elif model_name == 'Place':
+            model = Place()
+        else:
+            model = Review()
 
-        print(bm.id)
+        model.save()
+
+        print(model.id)
 
     def do_show(self, args: str):
         """ show [model] [id]
@@ -53,16 +74,16 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, *_other = args_lst
-        if model_name != 'BaseModel' and model_name != 'User':
+        if not model_name in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
-        bm = models.storage.all().get(f'{model_name}.{model_id}')
-        if not bm:
+        model = models.storage.all().get(f'{model_name}.{model_id}')
+        if not model:
             print('** no instance found **')
             return False
 
-        print(bm)
+        print(model)
 
     def do_destroy(self, args: str):
         """ destroy [model] [id]
@@ -77,12 +98,12 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, *_other = args_lst
-        if model_name != 'BaseModel' and model_name != 'User':
+        if not model_name in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
-        bm = models.storage.all().get(f'{model_name}.{model_id}')
-        if not bm:
+        model = models.storage.all().get(f'{model_name}.{model_id}')
+        if not model:
             print('** no instance found **')
             return False
 
@@ -95,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         storage_data = models.storage.all()
 
         if model_name:
-            if model_name != 'BaseModel' and model_name != 'User':
+            if not model_name in self.valid_models:
                 print('** class doesn\'t exist **')
                 return False
             print([str(value) for key, value in storage_data.items()
@@ -121,12 +142,12 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, attr_name, value, *_other = args_lst
-        if model_name != 'BaseModel' and model_name != 'User':
+        if not model_name in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
-        bm = models.storage.all().get(f'{model_name}.{model_id}')
-        if not bm:
+        model = models.storage.all().get(f'{model_name}.{model_id}')
+        if not model:
             print('** no instance found **')
             return False
 
@@ -135,8 +156,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             value = int(value)
 
-        bm.__dict__[attr_name] = value
-        bm.save()
+        model.__dict__[attr_name] = value
+        model.save()
 
     def emptyline(self) -> bool:
         return False

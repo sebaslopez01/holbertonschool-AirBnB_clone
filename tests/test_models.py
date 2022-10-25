@@ -25,6 +25,14 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(os.path.exists('file.json'))
         os.remove('file.json')
 
+    def test_id_attribute(self):
+        bm = BaseModel()
+        self.assertTrue(bm.id)
+
+    def test_sting_representation(self):
+        bm = BaseModel()
+        self.assertEqual(str(bm), f'[BaseModel] ({bm.id} {bm.__dict__})')
+
 
 class TestBaseModel(unittest.TestCase):
     pass

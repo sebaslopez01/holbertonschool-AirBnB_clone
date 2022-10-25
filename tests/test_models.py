@@ -7,6 +7,7 @@ This module define test classes
 """
 
 import unittest
+import os
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
@@ -18,7 +19,10 @@ from models.state import State
 
 
 class TestFileStorage(unittest.TestCase):
-    pass
+    def test_save_method(self):
+        bm = BaseModel()
+        bm.save()
+        self.assertTrue(os.path.exists('file.json'))
 
 
 class TestBaseModel(unittest.TestCase):

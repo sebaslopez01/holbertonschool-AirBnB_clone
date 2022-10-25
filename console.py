@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
         if not model_name:
             print('** class name missing **')
             return False
-        if not model_name in self.valid_models:
+        if model_name not in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, *_other = args_lst
-        if not model_name in self.valid_models:
+        if model_name not in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, *_other = args_lst
-        if not model_name in self.valid_models:
+        if model_name not in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 
@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         storage_data = models.storage.all()
 
         if model_name:
-            if not model_name in self.valid_models:
+            if model_name not in self.valid_models:
                 print('** class doesn\'t exist **')
                 return False
             print([str(value) for key, value in storage_data.items()
@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         model_name, model_id, attr_name, value, *_other = args_lst
-        if not model_name in self.valid_models:
+        if model_name not in self.valid_models:
             print('** class doesn\'t exist **')
             return False
 

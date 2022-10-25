@@ -51,3 +51,16 @@ class TestFileStorage(unittest.TestCase):
 
         storage.all().clear()
         os.remove('file.json')
+
+    def test_reload_method(self):
+        storage = FileStorage()
+        bm = BaseModel()
+        storage.new(bm)
+        storage.save()
+        storage.all().clear()
+        storage.reload()
+
+        self.assertEqual(storage.all().get(f'BaseModel.{bm.id}').id, bm.id)
+
+        storage.all().clear()
+        os.remove('file.json')

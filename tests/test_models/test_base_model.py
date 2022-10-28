@@ -8,7 +8,9 @@ This module define a TestBaseModel Class
 
 import unittest
 import os
+import json
 from models.base_model import BaseModel
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -17,9 +19,13 @@ class TestBaseModel(unittest.TestCase):
     """
 
     def test_save_method(self):
+        models.storage.all().clear()
         bm = BaseModel()
         bm.save()
-        self.assertTrue(os.path.exists('file.json'))
+        with open('file.json', 'r') as f:
+            json_obj = json.loads(f.read())
+        self.assertDictEqual(json_obj, {f'BaseModel.{bm.id}': bm.to_dict()})
+        
         os.remove('file.json')
 
     def test_to_dict_method(self):

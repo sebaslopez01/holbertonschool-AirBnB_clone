@@ -7,16 +7,13 @@ This module define a TestAmenity Class
 """
 
 import unittest
-import os
 from models.base_model import BaseModel
+from models.user import User
 
 
 class TestGeneral(unittest.TestCase):
-    def test_save_method(self):
-        bm = BaseModel()
-        bm.save()
-        self.assertTrue(os.path.exists('file.json'))
-        os.remove('file.json')
+    def test_email_attribute(self):
+        self.assertEqual(User.email, '')
 
     def test_to_dict_method(self):
         bm = BaseModel()

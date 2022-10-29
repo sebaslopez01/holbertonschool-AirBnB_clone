@@ -162,6 +162,24 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self) -> bool:
         return False
 
+    def default(self, line: str):
+        args_lst = line.split('.')
+        model_name, method, *_other = args_lst
+
+        storage_data = models.storage.all()
+
+        if model_name not in self.valid_models:
+            print('** class doesn\'t exist **')
+            return False
+        
+        if method == 'all()':
+            print([str(value) for key, value in storage_data.items()
+                    if key.split('.')[0] == model_name])
+            
+        
+
+        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

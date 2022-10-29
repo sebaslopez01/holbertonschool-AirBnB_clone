@@ -188,13 +188,28 @@ class HBNBCommand(cmd.Cmd):
             print(model)
         elif 'destroy' in method:
             model_id = method.split('"')[1]
-            model = models.storage.all().get(f'{model_name}.{model_id}')
-            if not model:
-                print('** no instance found **')
-                return False
+            self.do_destroy(f'{model_name} {model_id}')
+            # model = models.storage.all().get(f'{model_name}.{model_id}')
+            # if not model:
+            #     print('** no instance found **')
+            #     return False
 
-            del models.storage.all()[f'{model_name}.{model_id}']
-            models.storage.save()
+            # del models.storage.all()[f'{model_name}.{model_id}']
+            # models.storage.save()
+        # elif 'update' in method:
+        #     model_id = method.split('"')[1]
+        #     model = models.storage.all().get(f'{model_name}.{model_id}')
+        #     if not model:
+        #         print('** no instance found **')
+        #         return False
+
+        #     if value.startswith('"') and value.endswith('"'):
+        #         value = value.strip('"')
+        #     else:
+        #         value = int(value)
+
+        #     model.__dict__[attr_name] = value
+        #     model.save()
 
         
 

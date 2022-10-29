@@ -186,8 +186,15 @@ class HBNBCommand(cmd.Cmd):
                 return False
 
             print(model)
+        elif 'destroy' in method:
+            model_id = method.split('"')[1]
+            model = models.storage.all().get(f'{model_name}.{model_id}')
+            if not model:
+                print('** no instance found **')
+                return False
 
-        
+            del models.storage.all()[f'{model_name}.{model_id}']
+            models.storage.save()
 
         
 

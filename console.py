@@ -126,6 +126,8 @@ class HBNBCommand(cmd.Cmd):
         print([str(value) for value in storage_data.values()])
 
     def do_update(self, args: str):
+        """ update [model] [id] [attribute name] [attribute value]
+        Updates an instance attribute"""
         args_lst = args.split()
 
         if len(args_lst) == 0:
@@ -180,36 +182,14 @@ class HBNBCommand(cmd.Cmd):
                     if key.split('.')[0] == model_name))
         elif 'show' in method:
             model_id = method.split('"')[1]
-            model = models.storage.all().get(f'{model_name}.{model_id}')
-            if not model:
-                print('** no instance found **')
-                return False
-
-            print(model)
+            self.do_show(f'{model_name} {model_id}')
         elif 'destroy' in method:
             model_id = method.split('"')[1]
             self.do_destroy(f'{model_name} {model_id}')
-            # model = models.storage.all().get(f'{model_name}.{model_id}')
-            # if not model:
-            #     print('** no instance found **')
-            #     return False
+        elif 'update' in method:
+            update_data = method[7:-1].replace(',', '').replace('"', '', 4)
 
-            # del models.storage.all()[f'{model_name}.{model_id}']
-            # models.storage.save()
-        # elif 'update' in method:
-        #     model_id = method.split('"')[1]
-        #     model = models.storage.all().get(f'{model_name}.{model_id}')
-        #     if not model:
-        #         print('** no instance found **')
-        #         return False
-
-        #     if value.startswith('"') and value.endswith('"'):
-        #         value = value.strip('"')
-        #     else:
-        #         value = int(value)
-
-        #     model.__dict__[attr_name] = value
-        #     model.save()
+            self.do_update(f'{model_name} {update_data}')
 
         
 

@@ -7,6 +7,7 @@ This module defines a HBNBCommand Class
 """
 
 import cmd
+import json
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -187,9 +188,20 @@ class HBNBCommand(cmd.Cmd):
             model_id = method.split('"')[1]
             self.do_destroy(f'{model_name} {model_id}')
         elif 'update' in method:
-            update_data = method[7:-1].replace(',', '').replace('"', '', 4)
+            if '{' in method:
+                update_data = method[7:-1].split(',')
+                model_id = update_data[0].replace('"', '')
+                dict_data = json.loads(update_data[1].strip())
+                model = models.storage.all().get(f'{model_name}.{model_id}')
+                if not model:
+                    print('** no instance found **')
+                    return False
+                model.__dict__.update(dict_data)
+                model.save()
+            else:
+                update_data = method[7:-1].replace(',', '').replace('"', '', 4)
 
-            self.do_update(f'{model_name} {update_data}')
+                self.do_update(f'{model_name} {update_data}')
 
         
 

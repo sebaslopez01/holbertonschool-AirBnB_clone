@@ -191,7 +191,9 @@ class HBNBCommand(cmd.Cmd):
             if '{' in method:
                 update_data = method[7:-1].split(',', 1)
                 model_id = update_data[0].replace('"', '')
-                dict_data = json.loads(update_data[1].strip())
+                dict_data = json.loads(
+                    update_data[1].replace("'", '"').strip()
+                )
                 model = models.storage.all().get(f'{model_name}.{model_id}')
                 if not model:
                     print('** no instance found **')

@@ -178,6 +178,15 @@ class HBNBCommand(cmd.Cmd):
         elif method == 'count()':
             print(sum(1 for key in storage_data 
                     if key.split('.')[0] == model_name))
+        elif 'show' in method:
+            model_id = method.split('"')[1]
+            model = models.storage.all().get(f'{model_name}.{model_id}')
+            if not model:
+                print('** no instance found **')
+                return False
+
+            print(model)
+
         
 
         

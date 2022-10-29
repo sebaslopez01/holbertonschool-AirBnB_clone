@@ -177,10 +177,10 @@ class HBNBCommand(cmd.Cmd):
 
         if method == 'all()':
             print([str(value) for key, value in storage_data.items()
-                    if key.split('.')[0] == model_name])
+                if key.split('.')[0] == model_name])
         elif method == 'count()':
             print(sum(1 for key in storage_data
-                    if key.split('.')[0] == model_name))
+                if key.split('.')[0] == model_name))
         elif 'show' in method:
             model_id = method.split('"')[1]
             self.do_show(f'{model_name} {model_id}')

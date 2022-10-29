@@ -189,7 +189,7 @@ class HBNBCommand(cmd.Cmd):
             self.do_destroy(f'{model_name} {model_id}')
         elif 'update' in method:
             if '{' in method:
-                update_data = method[7:-1].split(',')
+                update_data = method[7:-1].split(',', 1)
                 model_id = update_data[0].replace('"', '')
                 dict_data = json.loads(update_data[1].strip())
                 model = models.storage.all().get(f'{model_name}.{model_id}')

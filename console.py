@@ -174,12 +174,12 @@ class HBNBCommand(cmd.Cmd):
         if model_name not in self.valid_models:
             print('** class doesn\'t exist **')
             return False
-        
+
         if method == 'all()':
             print([str(value) for key, value in storage_data.items()
                     if key.split('.')[0] == model_name])
         elif method == 'count()':
-            print(sum(1 for key in storage_data 
+            print(sum(1 for key in storage_data
                     if key.split('.')[0] == model_name))
         elif 'show' in method:
             model_id = method.split('"')[1]
@@ -204,9 +204,6 @@ class HBNBCommand(cmd.Cmd):
                 update_data = method[7:-1].replace(',', '').replace('"', '', 4)
 
                 self.do_update(f'{model_name} {update_data}')
-
-        
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

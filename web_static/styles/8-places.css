@@ -1,0 +1,108 @@
+.places h1 {
+  font-size: 30px;
+}
+
+.places article {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+  position: relative;
+}
+
+.places article h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.places ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: 1fr 1fr;
+}
+
+.places ul > article {
+  grid-column-end: span 2;
+}
+
+.places ul > article:last-child {
+  grid-column-start: 2;
+}
+
+.price_by_night {
+  color: #ff5a5f;
+  border: 4px solid #ff5a5f;
+  border-radius: 9999px;
+  min-width: 60px;
+  height: 60px;
+  font-size: 30px;
+  position: absolute;
+  transform: translateX(-50%) translateY(40%);
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.information {
+  height: 80px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.max_guest {
+  width: 100px;
+  background-image: url("../images/icon_group.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 10px;
+  background-position-y: start;
+  height: 40px;
+  position: relative;
+  margin-top: 4px;
+}
+
+.max_guest span {
+  position: absolute;
+  bottom: -20px;
+}
+
+.number_rooms {
+  width: 100px;
+  background-image: url("../images/icon_bed.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 10px;
+  background-position-y: start;
+  height: 40px;
+  position: relative;
+  margin-top: 4px;
+}
+
+.number_rooms span {
+  position: absolute;
+  bottom: -20px;
+}
+
+.number_bathrooms {
+  width: 100px;
+  width: 100px;
+  background-image: url("../images/icon_bath.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 10px;
+  background-position-y: start;
+  height: 40px;
+  position: relative;
+  margin-top: 4px;
+}
+
+.number_bathrooms span {
+  position: absolute;
+  bottom: -20px;
+}

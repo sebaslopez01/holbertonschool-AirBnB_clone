@@ -1,0 +1,30 @@
+.places h1 {
+  font-size: 30px;
+}
+
+.places article {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+}
+
+.places article h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.places ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: 1fr 1fr;
+}
+
+.places ul > article {
+  grid-column-end: span 2;
+}
+
+.places ul > article:last-child {
+  grid-column-start: 2;
+}
